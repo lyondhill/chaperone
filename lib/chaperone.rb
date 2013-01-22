@@ -1,4 +1,7 @@
 require "chaperone/version"
+require 'chaperone/config'
+require 'chaperone/route'
+require 'chaperone/base'
 
 module Chaperone
 

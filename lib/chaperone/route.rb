@@ -3,7 +3,7 @@ module Chaperone
 
     def list(*args)
       if (args.length + 1) == class_array.length
-        build_url(*args)
+        puts "#{Chaperone.config.domain}#{build_url(*args)}"
       else
         puts "BAD"
       end
@@ -11,7 +11,7 @@ module Chaperone
 
     def show(*args)
       if args.length == class_array.length
-        build_url(*args)
+        puts "#{Chaperone.config.domain}#{build_url(*args)}"
       else
         puts "BAD"
       end
@@ -21,7 +21,7 @@ module Chaperone
       if args.length == class_array.length
         payload = args.pop
         puts payload
-        build_url(*args)
+        puts "#{Chaperone.config.domain}#{build_url(*args)}"
       else
         puts "BAD"
       end
@@ -32,7 +32,7 @@ module Chaperone
       if (args.length - 1) == class_array.length
         payload = args.pop
         puts payload
-        build_url(*args)
+        puts "#{Chaperone.config.domain}#{build_url(*args)}"
       else
         puts "BAD"
       end
@@ -40,7 +40,7 @@ module Chaperone
 
     def delete(*args)
       if args.length == class_array.length
-        build_url(*args)
+        puts "#{Chaperone.config.domain}#{build_url(*args)}"
       else
         puts "BAD"
       end
@@ -49,8 +49,8 @@ module Chaperone
     private
 
     def build_url(*args)
-      arr = class_array.inject([]) { |arr, cl|  arr << (cl << 's'); arr << args.shift.to_s; arr }
-      puts arr.join("/")
+      arr = class_array.inject(['']) { |arr, cl|  arr << (cl << 's'); arr << args.shift.to_s; arr }
+      arr.join("/")
     end
 
     def class_array
