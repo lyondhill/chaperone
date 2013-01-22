@@ -8,9 +8,9 @@ Gem::Specification.new do |gem|
   gem.version       = Chaperone::VERSION
   gem.authors       = ["lyon"]
   gem.email         = ["lyondhill@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{Guides your little application to building successful rest client data}
+  gem.summary       = %q{restful app generation made easy}
+  gem.homepage      = "http://github.com/lyondhill/chaperone"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
