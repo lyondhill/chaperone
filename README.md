@@ -18,7 +18,48 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'chaperone'
+
+Chaperone.configure do |conf|
+  conf.domain = 'https://dashboard.pagodabox.com'
+  conf.user = 'usr'
+  conf.pass = 'pass'
+  conf.default_block do |req|
+    req.url "#{req.path.gsub(/\/$/, '')}.json"
+  end
+end
+
+class App
+  extend Chaperone::Route
+end
+
+class App::Component
+  extend Chaperone::Route
+end
+
+class App::Service
+  extend Chaperone::Route
+end
+
+class App::Service::Generation
+  extend Chaperone::Route
+end
+
+class App::Service::Generation::Member
+  extend Chaperone::Route
+end
+
+App.list do |req|
+  req.header[:something] = 'special header for this request'
+end
+
+App::Service.list
+App::Service.list('app_id')
+App::Service.update('app_id', 'service_id', {thing: 1, other: 'two'})
+App::Service::Generation.delete('app_id', 'service_id', 'gen_id')
+App::Service::Generation::Member.create('app_id', 'service_id','gen_id', {thing: 1, other: 'two'})
+```
 
 ## Contributing
 

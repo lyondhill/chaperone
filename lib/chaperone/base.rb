@@ -4,31 +4,31 @@ module Chaperone
   module Base
     extend self
 
-    def get(path, payload = {})
-      connection.get path, payload
+    def get(path, &block)
+      connection.get path, &block
     end
 
-    def put(path, payload = {})
-      connection.put path, payload      
+    def put(path, &block)
+      connection.put path, &block
     end
 
-    def post(path, payload = {})
-      connection.post path, payload
+    def post(path, &block)
+      connection.post path, &block
     end
 
-    def delete(path, payload = {})
-      connection.delete path, payload
+    def delete(path, &block)
+      connection.delete path, &block
     end
 
     private
 
     def connection
-      @conn ||= Faraday.new(:url => "#{Chaperone.config.domain}") do |faraday|
-        faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+      Faraday.new(url: Chaperone.config.domain).tap do |con|
         if Chaperone.config.user
-          faraday.request :basic_authentication, Chaperone.config.user, Chaperone.config.pass 
+          con.basic_auth Chaperone.config.user, Chaperone.config.pass
         end
       end
+
     end
 
   end
