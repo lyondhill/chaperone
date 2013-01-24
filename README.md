@@ -51,7 +51,9 @@ class App::Service::Generation::Member
 end
 
 App.list do |req|
-  req.header[:something] = 'special header for this request'
+  req.url '/cows'
+  req.headers['Content-Type'] = 'application/json'
+  req.body = '{ "name": "Unagi" }'
 end
 
 App::Service.list('app_id')
